@@ -158,6 +158,8 @@ class Dockerize (object):
         if symlinks is None:
             symlinks = self.symlinks
 
+        # patch /usr/local/lib -> /usr/lib
+        dst = dst.replace("/usr/local/lib/","/usr/lib/")
         LOG.info('copying file %s to %s', src, dst)
         target = os.path.join(self.targetdir, dst[1:])
         target_dir = os.path.dirname(target)
